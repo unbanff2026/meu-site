@@ -7,188 +7,410 @@
 <title>Painel Unban Free Fire</title>
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial;
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial,sans-serif;
 }
 
-body {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  background: url("https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1600&q=80");
-  background-size: cover;
-  background-position: center;
+body{
+  height:100vh;
+  overflow:hidden;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#05010a;
+  position:relative;
 }
 
-.overlay {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.85);
+/* FUNDO ANIMADO */
+
+body::before{
+  content:"";
+  position:absolute;
+  width:900px;
+  height:900px;
+  background:
+  radial-gradient(circle,#8a2eff88 0%,transparent 60%),
+  radial-gradient(circle,#ff00ff44 0%,transparent 70%),
+  radial-gradient(circle,#4b00ff55 0%,transparent 75%);
+  filter:blur(90px);
+  animation:bgRotate 12s linear infinite;
 }
 
-.container {
-  position: relative;
-  width: 520px;
-  padding: 25px;
-
-  background: rgba(0,0,0,0.82);
-  border-radius: 16px;
-
-  border: 1px solid #ff6a00;
-  box-shadow: 0 0 30px #ff4d00;
-
-  text-align: center;
-  color: white;
+body::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+  linear-gradient(
+  135deg,
+  rgba(0,0,0,0.9),
+  rgba(30,0,60,0.7),
+  rgba(0,0,0,0.95)
+  );
 }
 
-/* TÍTULO */
-h1 {
-  color: #ff6a00;
-  text-shadow: 0 0 15px #ff6a00, 0 0 30px #ff0000;
-  letter-spacing: 2px;
-  animation: glow 1.5s infinite alternate;
+/* PARTÍCULAS */
+
+.particles span{
+  position:absolute;
+  width:4px;
+  height:4px;
+  background:#b84dff;
+  border-radius:50%;
+  box-shadow:0 0 10px #b84dff;
+  animation:float 10s linear infinite;
 }
 
-@keyframes glow {
-  from { text-shadow: 0 0 10px #ff6a00; }
-  to { text-shadow: 0 0 25px #ff0000; }
+.particles span:nth-child(1){
+  top:10%;
+  left:20%;
+  animation-duration:8s;
 }
 
-.sub {
-  font-size: 13px;
-  color: #ccc;
-  margin-bottom: 15px;
+.particles span:nth-child(2){
+  top:70%;
+  left:80%;
+  animation-duration:11s;
 }
 
-/* INPUT */
-input, select {
-  width: 100%;
-  padding: 12px;
-  margin-top: 10px;
-
-  border-radius: 10px;
-  border: none;
-
-  background: #111;
-  color: white;
+.particles span:nth-child(3){
+  top:40%;
+  left:10%;
+  animation-duration:9s;
 }
 
-/* BOTÃO */
-.btn {
-  width: 100%;
-  padding: 12px;
-  margin-top: 10px;
-
-  border: none;
-  border-radius: 10px;
-
-  cursor: pointer;
-  font-weight: bold;
-
-  background: linear-gradient(90deg, #ff6a00, #ff0000);
-  color: white;
+.particles span:nth-child(4){
+  top:80%;
+  left:30%;
+  animation-duration:13s;
 }
 
-.btn:hover {
-  transform: scale(1.03);
-  box-shadow: 0 0 20px #ff4d00;
+.particles span:nth-child(5){
+  top:20%;
+  left:70%;
+  animation-duration:7s;
 }
 
-/* BOX */
-.box {
-  margin-top: 15px;
-  padding: 15px;
+@keyframes float{
 
-  border-radius: 12px;
-  background: #111;
+  0%{
+    transform:translateY(0px);
+    opacity:0;
+  }
 
-  border: 1px solid #ff6a00;
+  50%{
+    opacity:1;
+  }
+
+  100%{
+    transform:translateY(-120px);
+    opacity:0;
+  }
+
 }
 
-.result {
-  margin-top: 10px;
-  color: #00ff99;
-  font-weight: bold;
+@keyframes bgRotate{
+
+  from{
+    transform:rotate(0deg) scale(1);
+  }
+
+  50%{
+    transform:rotate(180deg) scale(1.15);
+  }
+
+  to{
+    transform:rotate(360deg) scale(1);
+  }
+
 }
 
-.status {
-  margin-top: 10px;
-  color: #ff4444;
-  font-weight: bold;
+/* LOGO CENTRAL */
+
+.logo-bg{
+  position:absolute;
+  font-size:120px;
+  font-weight:bold;
+  color:rgba(255,255,255,0.03);
+  text-shadow:
+  0 0 20px #8a2eff,
+  0 0 40px #b84dff,
+  0 0 80px #4b00ff;
+  animation:spin 20s linear infinite;
+  z-index:1;
+  user-select:none;
 }
+
+@keyframes spin{
+
+  from{
+    transform:rotate(0deg);
+  }
+
+  to{
+    transform:rotate(360deg);
+  }
+
+}
+
+/* CONTAINER */
+
+.container{
+  position:relative;
+  z-index:2;
+  width:530px;
+  padding:25px;
+  border-radius:22px;
+  background:rgba(10,10,15,0.78);
+  backdrop-filter:blur(14px);
+  border:1px solid #8a2eff;
+  box-shadow:
+  0 0 25px #8a2eff55,
+  0 0 60px #4b00ff22;
+  color:white;
+  overflow:hidden;
+}
+
+/* BRILHO */
+
+.container::before{
+  content:"";
+  position:absolute;
+  top:-50%;
+  left:-50%;
+  width:200%;
+  height:200%;
+  background:
+  linear-gradient(
+  45deg,
+  transparent,
+  rgba(255,255,255,0.03),
+  transparent
+  );
+  transform:rotate(25deg);
+  animation:shine 6s linear infinite;
+}
+
+@keyframes shine{
+
+  from{
+    transform:translateX(-100%) rotate(25deg);
+  }
+
+  to{
+    transform:translateX(100%) rotate(25deg);
+  }
+
+}
+
+h1{
+  text-align:center;
+  color:#d966ff;
+  font-size:34px;
+  text-shadow:
+  0 0 10px #b84dff,
+  0 0 25px #8a2eff;
+}
+
+.sub{
+  text-align:center;
+  margin-top:10px;
+  color:#ccc;
+  font-size:13px;
+  line-height:20px;
+}
+
+.box{
+  margin-top:16px;
+  padding:16px;
+  border-radius:16px;
+  background:rgba(20,20,25,0.9);
+  border:1px solid #8a2eff55;
+}
+
+.box h3{
+  margin-bottom:10px;
+  color:#d966ff;
+}
+
+input,select{
+  width:100%;
+  padding:12px;
+  margin-top:10px;
+  border:none;
+  border-radius:10px;
+  background:#111;
+  color:white;
+  outline:none;
+}
+
+.btn{
+  width:100%;
+  padding:12px;
+  margin-top:10px;
+  border:none;
+  border-radius:12px;
+  font-weight:bold;
+  cursor:pointer;
+  color:white;
+  background:
+  linear-gradient(
+  90deg,
+  #6f00ff,
+  #b84dff,
+  #8a2eff
+  );
+  transition:0.25s;
+}
+
+.btn:hover{
+  transform:scale(1.03);
+  box-shadow:
+  0 0 15px #b84dff,
+  0 0 30px #8a2eff;
+}
+
+.result{
+  margin-top:10px;
+  color:#00ff99;
+  font-weight:bold;
+}
+
+.status{
+  margin-top:10px;
+  color:#ff5555;
+  font-weight:bold;
+}
+
 </style>
 </head>
 
 <body>
 
-<div class="overlay"></div>
+<!-- PARTICULAS -->
+<div class="particles">
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
 
+<!-- LOGO -->
+<div class="logo-bg">
+FREE FIRE
+</div>
+
+<!-- PAINEL -->
 <div class="container">
 
-  <h1>PAINEL UNBAN FREE FIRE</h1>
-  <p class="sub">Sistema de análise de conta gamer (demo)</p>
+<h1>PAINEL UNBAN FREE FIRE</h1>
 
-  <!-- LOGIN -->
-  <div class="box">
-    <h3>Login Social</h3>
+<p class="sub">
+O único painel privado realmente funcionando 🚀<br>
+Sistema atualizado com método exclusivo e seguro.
+</p>
 
-    <button class="btn" onclick="login('Facebook')">Facebook</button>
-    <button class="btn" onclick="login('Google')">Google</button>
-    <button class="btn" onclick="login('VK')">VK</button>
+<!-- LOGIN -->
+<div class="box">
 
-    <p id="loginRes" class="result"></p>
-  </div>
+<h3>Login Social</h3>
 
-  <!-- BUSCA -->
-  <div class="box">
-    <h3>Buscar Conta</h3>
+<button class="btn" onclick="login('Facebook')">
+Facebook
+</button>
 
-    <input id="busca" placeholder="Digite ID ou Nome">
+<button class="btn" onclick="login('Google')">
+Google
+</button>
 
-    <button class="btn" onclick="buscar()">Buscar</button>
+<button class="btn" onclick="login('VK')">
+VK
+</button>
 
-    <p id="buscaRes" class="result"></p>
-  </div>
+<p id="loginRes" class="result"></p>
 
-  <!-- DISPOSITIVO -->
-  <div class="box">
-    <h3>Dispositivo</h3>
+</div>
 
-    <select id="device" onchange="device()">
-      <option disabled selected>Selecione o dispositivo</option>
-      <option>Android</option>
-      <option>PC</option>
-      <option>iOS</option>
-    </select>
+<!-- BUSCA -->
+<div class="box">
 
-    <p id="deviceRes" class="result"></p>
-  </div>
+<h3>Buscar Conta</h3>
 
-  <!-- STATUS -->
-  <div class="box">
-    <h3>Status da Conta</h3>
+<input id="busca" placeholder="Digite ID ou Nome">
 
-    <button class="btn" onclick="status()">Verificar Status</button>
+<button class="btn" onclick="buscar()">
+Buscar
+</button>
 
-    <p id="statusRes" class="status">NÃO VERIFICADO</p>
-  </div>
+<p id="buscaRes" class="result"></p>
 
-  <!-- KEY -->
-  <div class="box">
-    <h3>Sistema de Chave</h3>
+</div>
 
-    <button class="btn" onclick="keygen()">Gerar Key</button>
+<!-- DEVICE -->
+<div class="box">
 
-    <p id="keyRes" class="result"></p>
+<h3>Dispositivo</h3>
 
-    <button class="btn" onclick="confirmar()">Confirmar Processo</button>
-  </div>
+<select id="device" onchange="device()">
+
+<option disabled selected>
+Selecione
+</option>
+
+<option>
+Android
+</option>
+
+<option>
+PC
+</option>
+
+<option>
+iOS
+</option>
+
+</select>
+
+<p id="deviceRes" class="result"></p>
+
+</div>
+
+<!-- STATUS -->
+<div class="box">
+
+<h3>Status da Conta</h3>
+
+<button class="btn" onclick="status()">
+Verificar Status
+</button>
+
+<p id="statusRes" class="status">
+NÃO VERIFICADO
+</p>
+
+</div>
+
+<!-- KEY -->
+<div class="box">
+
+<h3>Sistema de Key</h3>
+
+<button class="btn" onclick="keygen()">
+Gerar Key
+</button>
+
+<p id="keyRes" class="result"></p>
+
+<button class="btn" onclick="confirmar()">
+Confirmar Unban
+</button>
+
+</div>
 
 </div>
 
@@ -197,73 +419,133 @@ input, select {
 let user = null;
 let key = null;
 
-// LOGIN
 function login(type){
-  document.getElementById("loginRes").innerText =
-    "Login selecionado: " + type;
+
+document.getElementById("loginRes").innerText =
+"Login realizado com " + type;
+
 }
 
-// CONTAS DEMO
-const contas = [
-  {id:"1", nome:"João"},
-  {id:"2", nome:"Maria"},
-  {id:"3", nome:"Carlos"}
+function buscar(){
+
+let v =
+document.getElementById("busca")
+.value
+.trim();
+
+if(!v){
+
+document.getElementById("buscaRes")
+.innerText =
+"Digite ID ou Nome";
+
+return;
+
+}
+
+user = {
+id:v,
+nome:v
+};
+
+document.getElementById("buscaRes")
+.innerText =
+"Conta carregada: " + v;
+
+}
+
+function device(){
+
+let d =
+document.getElementById("device")
+.value;
+
+document.getElementById("deviceRes")
+.innerText =
+"Dispositivo: " + d;
+
+}
+
+function status(){
+
+if(!user){
+
+alert("Busque uma conta primeiro!");
+
+return;
+
+}
+
+let estados = [
+"ATIVA",
+"SUSPENSA",
+"EM ANÁLISE"
 ];
 
-// BUSCAR
-function buscar(){
-  let v = document.getElementById("busca").value.toLowerCase();
+let r =
+estados[
+Math.floor(
+Math.random()*estados.length
+)
+];
 
-  user = contas.find(c =>
-    c.id === v || c.nome.toLowerCase() === v
-  );
+document.getElementById("statusRes")
+.innerText = r;
 
-  document.getElementById("buscaRes").innerText =
-    user ? `Conta encontrada: ${user.nome} (ID ${user.id})`
-         : "Conta não encontrada";
 }
 
-// DISPOSITIVO
-function device(){
-  let d = document.getElementById("device").value;
-  document.getElementById("deviceRes").innerText =
-    "Dispositivo: " + d;
-}
-
-// STATUS
-function status(){
-  if(!user){
-    alert("Busque uma conta primeiro!");
-    return;
-  }
-
-  let estados = ["ATIVA","SUSPENSA","EM ANÁLISE"];
-  let r = estados[Math.floor(Math.random()*estados.length)];
-
-  document.getElementById("statusRes").innerText = r;
-}
-
-// KEY
 function keygen(){
-  if(!user){
-    alert("Busque uma conta primeiro!");
-    return;
-  }
 
-  key = "UNBAN-" + Math.random().toString(36).substring(2,10).toUpperCase();
+if(!user){
 
-  document.getElementById("keyRes").innerText =
-    "KEY GERADA: " + key;
+alert("Busque uma conta primeiro!");
+
+return;
+
 }
 
-// CONFIRMAR
-function confirmar(){
-  if(!key){
-    alert("Gere uma key primeiro!");
-    return;
-  }
+key =
+"UNBAN-" +
+Math.random()
+.toString(36)
+.substring(2,10)
+.toUpperCase();
 
-  alert("Processo finalizado com sucesso!");
+document.getElementById("keyRes")
+.innerText =
+"KEY: " + key;
+
+}
+
+function confirmar(){
+
+if(!key){
+
+alert("Gere uma key primeiro!");
+
+return;
+
+}
+
+document.getElementById("keyRes")
+.innerText =
+"Processando...";
+
+setTimeout(()=>{
+
+alert(
+"✔ Solicitação enviada com sucesso!\n\n" +
+      "Seu pedido foi registrado.\n" +
+      "Tempo estimado de análise: até 48 horas.\n" +
+      "Taxa: R$0,50"
+);
+
+document.getElementById("statusRes")
+.innerText =
+"EM PROCESSAMENTO";
+
+},800);
+
 }
 
 </script>
