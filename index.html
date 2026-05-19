@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Painel Unban Free Fire</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: url("https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1600&q=80");
+  background-size: cover;
+  background-position: center;
+}
+
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.85);
+}
+
+.container {
+  position: relative;
+  width: 520px;
+  padding: 25px;
+
+  background: rgba(0,0,0,0.82);
+  border-radius: 16px;
+
+  border: 1px solid #ff6a00;
+  box-shadow: 0 0 30px #ff4d00;
+
+  text-align: center;
+  color: white;
+}
+
+/* TÍTULO */
+h1 {
+  color: #ff6a00;
+  text-shadow: 0 0 15px #ff6a00, 0 0 30px #ff0000;
+  letter-spacing: 2px;
+  animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 10px #ff6a00; }
+  to { text-shadow: 0 0 25px #ff0000; }
+}
+
+.sub {
+  font-size: 13px;
+  color: #ccc;
+  margin-bottom: 15px;
+}
+
+/* INPUT */
+input, select {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+
+  border-radius: 10px;
+  border: none;
+
+  background: #111;
+  color: white;
+}
+
+/* BOTÃO */
+.btn {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+
+  border: none;
+  border-radius: 10px;
+
+  cursor: pointer;
+  font-weight: bold;
+
+  background: linear-gradient(90deg, #ff6a00, #ff0000);
+  color: white;
+}
+
+.btn:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 20px #ff4d00;
+}
+
+/* BOX */
+.box {
+  margin-top: 15px;
+  padding: 15px;
+
+  border-radius: 12px;
+  background: #111;
+
+  border: 1px solid #ff6a00;
+}
+
+.result {
+  margin-top: 10px;
+  color: #00ff99;
+  font-weight: bold;
+}
+
+.status {
+  margin-top: 10px;
+  color: #ff4444;
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="overlay"></div>
+
+<div class="container">
+
+  <h1>PAINEL UNBAN FREE FIRE</h1>
+  <p class="sub">Sistema de análise de conta gamer (demo)</p>
+
+  <!-- LOGIN -->
+  <div class="box">
+    <h3>Login Social</h3>
+
+    <button class="btn" onclick="login('Facebook')">Facebook</button>
+    <button class="btn" onclick="login('Google')">Google</button>
+    <button class="btn" onclick="login('VK')">VK</button>
+
+    <p id="loginRes" class="result"></p>
+  </div>
+
+  <!-- BUSCA -->
+  <div class="box">
+    <h3>Buscar Conta</h3>
+
+    <input id="busca" placeholder="Digite ID ou Nome">
+
+    <button class="btn" onclick="buscar()">Buscar</button>
+
+    <p id="buscaRes" class="result"></p>
+  </div>
+
+  <!-- DISPOSITIVO -->
+  <div class="box">
+    <h3>Dispositivo</h3>
+
+    <select id="device" onchange="device()">
+      <option disabled selected>Selecione o dispositivo</option>
+      <option>Android</option>
+      <option>PC</option>
+      <option>iOS</option>
+    </select>
+
+    <p id="deviceRes" class="result"></p>
+  </div>
+
+  <!-- STATUS -->
+  <div class="box">
+    <h3>Status da Conta</h3>
+
+    <button class="btn" onclick="status()">Verificar Status</button>
+
+    <p id="statusRes" class="status">NÃO VERIFICADO</p>
+  </div>
+
+  <!-- KEY -->
+  <div class="box">
+    <h3>Sistema de Chave</h3>
+
+    <button class="btn" onclick="keygen()">Gerar Key</button>
+
+    <p id="keyRes" class="result"></p>
+
+    <button class="btn" onclick="confirmar()">Confirmar Processo</button>
+  </div>
+
+</div>
+
+<script>
+
+let user = null;
+let key = null;
+
+// LOGIN
+function login(type){
+  document.getElementById("loginRes").innerText =
+    "Login selecionado: " + type;
+}
+
+// CONTAS DEMO
+const contas = [
+  {id:"1", nome:"João"},
+  {id:"2", nome:"Maria"},
+  {id:"3", nome:"Carlos"}
+];
+
+// BUSCAR
+function buscar(){
+  let v = document.getElementById("busca").value.toLowerCase();
+
+  user = contas.find(c =>
+    c.id === v || c.nome.toLowerCase() === v
+  );
+
+  document.getElementById("buscaRes").innerText =
+    user ? `Conta encontrada: ${user.nome} (ID ${user.id})`
+         : "Conta não encontrada";
+}
+
+// DISPOSITIVO
+function device(){
+  let d = document.getElementById("device").value;
+  document.getElementById("deviceRes").innerText =
+    "Dispositivo: " + d;
+}
+
+// STATUS
+function status(){
+  if(!user){
+    alert("Busque uma conta primeiro!");
+    return;
+  }
+
+  let estados = ["ATIVA","SUSPENSA","EM ANÁLISE"];
+  let r = estados[Math.floor(Math.random()*estados.length)];
+
+  document.getElementById("statusRes").innerText = r;
+}
+
+// KEY
+function keygen(){
+  if(!user){
+    alert("Busque uma conta primeiro!");
+    return;
+  }
+
+  key = "UNBAN-" + Math.random().toString(36).substring(2,10).toUpperCase();
+
+  document.getElementById("keyRes").innerText =
+    "KEY GERADA: " + key;
+}
+
+// CONFIRMAR
+function confirmar(){
+  if(!key){
+    alert("Gere uma key primeiro!");
+    return;
+  }
+
+  alert("Processo finalizado com sucesso!");
+}
+
+</script>
+
+</body>
+</html>
