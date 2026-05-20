@@ -1,289 +1,304 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
 
 <title>Painel Unban Free Fire</title>
 
 <style>
 
 *{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:Arial,sans-serif;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
 }
 
 body{
-  height:100vh;
-  overflow:hidden;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  background:#05010a;
-  position:relative;
+min-height:100vh;
+overflow-y:auto;
+overflow-x:hidden;
+display:flex;
+justify-content:center;
+align-items:flex-start;
+background:#05010a;
+position:relative;
+padding:15px;
 }
 
-/* FUNDO ANIMADO */
+/* FUNDO */
 
 body::before{
-  content:"";
-  position:absolute;
-  width:900px;
-  height:900px;
-  background:
-  radial-gradient(circle,#8a2eff88 0%,transparent 60%),
-  radial-gradient(circle,#ff00ff44 0%,transparent 70%),
-  radial-gradient(circle,#4b00ff55 0%,transparent 75%);
-  filter:blur(90px);
-  animation:bgRotate 12s linear infinite;
+content:"";
+position:fixed;
+width:700px;
+height:700px;
+background:
+radial-gradient(circle,#8a2eff88 0%,transparent 60%),
+radial-gradient(circle,#ff00ff44 0%,transparent 70%),
+radial-gradient(circle,#4b00ff55 0%,transparent 75%);
+filter:blur(90px);
+animation:bgRotate 12s linear infinite;
+z-index:0;
 }
 
 body::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:
-  linear-gradient(
-  135deg,
-  rgba(0,0,0,0.9),
-  rgba(30,0,60,0.7),
-  rgba(0,0,0,0.95)
-  );
+content:"";
+position:fixed;
+inset:0;
+background:
+linear-gradient(
+135deg,
+rgba(0,0,0,0.9),
+rgba(30,0,60,0.7),
+rgba(0,0,0,0.95)
+);
+z-index:0;
 }
 
-/* PARTÍCULAS */
+/* PARTICULAS */
 
 .particles span{
-  position:absolute;
-  width:4px;
-  height:4px;
-  background:#b84dff;
-  border-radius:50%;
-  box-shadow:0 0 10px #b84dff;
-  animation:float 10s linear infinite;
+position:absolute;
+width:4px;
+height:4px;
+background:#b84dff;
+border-radius:50%;
+box-shadow:0 0 10px #b84dff;
+animation:float 10s linear infinite;
 }
 
 .particles span:nth-child(1){
-  top:10%;
-  left:20%;
-  animation-duration:8s;
+top:10%;
+left:20%;
+animation-duration:8s;
 }
 
 .particles span:nth-child(2){
-  top:70%;
-  left:80%;
-  animation-duration:11s;
+top:70%;
+left:80%;
+animation-duration:11s;
 }
 
 .particles span:nth-child(3){
-  top:40%;
-  left:10%;
-  animation-duration:9s;
+top:40%;
+left:10%;
+animation-duration:9s;
 }
 
 .particles span:nth-child(4){
-  top:80%;
-  left:30%;
-  animation-duration:13s;
+top:80%;
+left:30%;
+animation-duration:13s;
 }
 
 .particles span:nth-child(5){
-  top:20%;
-  left:70%;
-  animation-duration:7s;
+top:20%;
+left:70%;
+animation-duration:7s;
 }
 
 @keyframes float{
 
-  0%{
-    transform:translateY(0px);
-    opacity:0;
-  }
+0%{
+transform:translateY(0px);
+opacity:0;
+}
 
-  50%{
-    opacity:1;
-  }
+50%{
+opacity:1;
+}
 
-  100%{
-    transform:translateY(-120px);
-    opacity:0;
-  }
+100%{
+transform:translateY(-120px);
+opacity:0;
+}
 
 }
 
 @keyframes bgRotate{
 
-  from{
-    transform:rotate(0deg) scale(1);
-  }
+from{
+transform:rotate(0deg) scale(1);
+}
 
-  50%{
-    transform:rotate(180deg) scale(1.15);
-  }
+50%{
+transform:rotate(180deg) scale(1.15);
+}
 
-  to{
-    transform:rotate(360deg) scale(1);
-  }
+to{
+transform:rotate(360deg) scale(1);
+}
 
 }
 
-/* LOGO CENTRAL */
+/* LOGO */
 
 .logo-bg{
-  position:absolute;
-  font-size:120px;
-  font-weight:bold;
-  color:rgba(255,255,255,0.03);
-  text-shadow:
-  0 0 20px #8a2eff,
-  0 0 40px #b84dff,
-  0 0 80px #4b00ff;
-  animation:spin 20s linear infinite;
-  z-index:1;
-  user-select:none;
+position:fixed;
+font-size:60px;
+font-weight:bold;
+color:rgba(255,255,255,0.03);
+text-shadow:
+0 0 20px #8a2eff,
+0 0 40px #b84dff,
+0 0 80px #4b00ff;
+animation:spin 20s linear infinite;
+z-index:1;
+user-select:none;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+pointer-events:none;
 }
 
 @keyframes spin{
 
-  from{
-    transform:rotate(0deg);
-  }
+from{
+transform:translate(-50%,-50%) rotate(0deg);
+}
 
-  to{
-    transform:rotate(360deg);
-  }
+to{
+transform:translate(-50%,-50%) rotate(360deg);
+}
 
 }
 
 /* CONTAINER */
 
 .container{
-  position:relative;
-  z-index:2;
-  width:530px;
-  padding:25px;
-  border-radius:22px;
-  background:rgba(10,10,15,0.78);
-  backdrop-filter:blur(14px);
-  border:1px solid #8a2eff;
-  box-shadow:
-  0 0 25px #8a2eff55,
-  0 0 60px #4b00ff22;
-  color:white;
-  overflow:hidden;
+position:relative;
+z-index:2;
+width:100%;
+max-width:390px;
+padding:18px;
+border-radius:22px;
+background:rgba(10,10,15,0.78);
+backdrop-filter:blur(14px);
+border:1px solid #8a2eff;
+box-shadow:
+0 0 25px #8a2eff55,
+0 0 60px #4b00ff22;
+color:white;
+overflow:hidden;
 }
 
 /* BRILHO */
 
 .container::before{
-  content:"";
-  position:absolute;
-  top:-50%;
-  left:-50%;
-  width:200%;
-  height:200%;
-  background:
-  linear-gradient(
-  45deg,
-  transparent,
-  rgba(255,255,255,0.03),
-  transparent
-  );
-  transform:rotate(25deg);
-  animation:shine 6s linear infinite;
+content:"";
+position:absolute;
+top:-50%;
+left:-50%;
+width:200%;
+height:200%;
+background:
+linear-gradient(
+45deg,
+transparent,
+rgba(255,255,255,0.03),
+transparent
+);
+transform:rotate(25deg);
+animation:shine 6s linear infinite;
 }
 
 @keyframes shine{
 
-  from{
-    transform:translateX(-100%) rotate(25deg);
-  }
+from{
+transform:translateX(-100%) rotate(25deg);
+}
 
-  to{
-    transform:translateX(100%) rotate(25deg);
-  }
+to{
+transform:translateX(100%) rotate(25deg);
+}
 
 }
 
 h1{
-  text-align:center;
-  color:#d966ff;
-  font-size:34px;
-  text-shadow:
-  0 0 10px #b84dff,
-  0 0 25px #8a2eff;
+text-align:center;
+color:#d966ff;
+font-size:27px;
+text-shadow:
+0 0 10px #b84dff,
+0 0 25px #8a2eff;
 }
 
 .sub{
-  text-align:center;
-  margin-top:10px;
-  color:#ccc;
-  font-size:13px;
-  line-height:20px;
+text-align:center;
+margin-top:10px;
+color:#ccc;
+font-size:12px;
+line-height:18px;
 }
 
 .box{
-  margin-top:16px;
-  padding:16px;
-  border-radius:16px;
-  background:rgba(20,20,25,0.9);
-  border:1px solid #8a2eff55;
+margin-top:14px;
+padding:14px;
+border-radius:16px;
+background:rgba(20,20,25,0.9);
+border:1px solid #8a2eff55;
 }
 
 .box h3{
-  margin-bottom:10px;
-  color:#d966ff;
+margin-bottom:10px;
+color:#d966ff;
+font-size:16px;
 }
 
 input,select{
-  width:100%;
-  padding:12px;
-  margin-top:10px;
-  border:none;
-  border-radius:10px;
-  background:#111;
-  color:white;
-  outline:none;
+width:100%;
+padding:12px;
+margin-top:10px;
+border:none;
+border-radius:10px;
+background:#111;
+color:white;
+outline:none;
+font-size:14px;
 }
 
 .btn{
-  width:100%;
-  padding:12px;
-  margin-top:10px;
-  border:none;
-  border-radius:12px;
-  font-weight:bold;
-  cursor:pointer;
-  color:white;
-  background:
-  linear-gradient(
-  90deg,
-  #6f00ff,
-  #b84dff,
-  #8a2eff
-  );
-  transition:0.25s;
+width:100%;
+padding:12px;
+margin-top:10px;
+border:none;
+border-radius:12px;
+font-weight:bold;
+cursor:pointer;
+color:white;
+background:
+linear-gradient(
+90deg,
+#6f00ff,
+#b84dff,
+#8a2eff
+);
+transition:0.25s;
+font-size:14px;
 }
 
 .btn:hover{
-  transform:scale(1.03);
-  box-shadow:
-  0 0 15px #b84dff,
-  0 0 30px #8a2eff;
+transform:scale(1.02);
+box-shadow:
+0 0 15px #b84dff,
+0 0 30px #8a2eff;
 }
 
 .result{
-  margin-top:10px;
-  color:#00ff99;
-  font-weight:bold;
+margin-top:10px;
+color:#00ff99;
+font-weight:bold;
+font-size:13px;
+word-break:break-word;
 }
 
 .status{
-  margin-top:10px;
-  color:#ff5555;
-  font-weight:bold;
+margin-top:10px;
+color:#ff5555;
+font-weight:bold;
+font-size:13px;
 }
 
 </style>
@@ -291,21 +306,18 @@ input,select{
 
 <body>
 
-<!-- PARTICULAS -->
 <div class="particles">
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
 </div>
 
-<!-- LOGO -->
 <div class="logo-bg">
 FREE FIRE
 </div>
 
-<!-- PAINEL -->
 <div class="container">
 
 <h1>PAINEL UNBAN FREE FIRE</h1>
@@ -316,6 +328,7 @@ Sistema atualizado com método exclusivo e seguro.
 </p>
 
 <!-- LOGIN -->
+
 <div class="box">
 
 <h3>Login Social</h3>
@@ -337,6 +350,7 @@ VK
 </div>
 
 <!-- BUSCA -->
+
 <div class="box">
 
 <h3>Buscar Conta</h3>
@@ -352,6 +366,7 @@ Buscar
 </div>
 
 <!-- DEVICE -->
+
 <div class="box">
 
 <h3>Dispositivo</h3>
@@ -381,11 +396,12 @@ iOS
 </div>
 
 <!-- STATUS -->
+
 <div class="box">
 
 <h3>Status da Conta</h3>
 
-<button class="btn" onclick="status()">
+<button class="btn" onclick="statusConta()">
 Verificar Status
 </button>
 
@@ -396,6 +412,7 @@ NÃO VERIFICADO
 </div>
 
 <!-- KEY -->
+
 <div class="box">
 
 <h3>Sistema de Key</h3>
@@ -419,12 +436,16 @@ Confirmar Unban
 let user = null;
 let key = null;
 
+/* LOGIN */
+
 function login(type){
 
 document.getElementById("loginRes").innerText =
-"Login realizado com " + type;
+"✔ Login realizado com " + type;
 
 }
+
+/* BUSCAR CONTA */
 
 function buscar(){
 
@@ -450,9 +471,11 @@ nome:v
 
 document.getElementById("buscaRes")
 .innerText =
-"Conta carregada: " + v;
+"✔ Conta carregada: " + v;
 
 }
+
+/* DEVICE */
 
 function device(){
 
@@ -462,11 +485,13 @@ document.getElementById("device")
 
 document.getElementById("deviceRes")
 .innerText =
-"Dispositivo: " + d;
+"✔ Dispositivo: " + d;
 
 }
 
-function status(){
+/* STATUS */
+
+function statusConta(){
 
 if(!user){
 
@@ -494,6 +519,8 @@ document.getElementById("statusRes")
 
 }
 
+/* GERAR KEY */
+
 function keygen(){
 
 if(!user){
@@ -513,9 +540,11 @@ Math.random()
 
 document.getElementById("keyRes")
 .innerText =
-"KEY: " + key;
+"✔ KEY GERADA: " + key;
 
 }
+
+/* CONFIRMAR */
 
 function confirmar(){
 
@@ -529,22 +558,26 @@ return;
 
 document.getElementById("keyRes")
 .innerText =
-"Processando...";
+"⏳ Processando solicitação...";
 
 setTimeout(()=>{
 
 alert(
 "✔ Solicitação enviada com sucesso!\n\n" +
-      "Seu pedido foi registrado.\n" +
-      "Tempo estimado de análise: até 48 horas.\n" +
-      "Taxa: R$0,50"
+"Seu pedido foi registrado.\n" +
+"Tempo estimado de análise: até 48 horas.\n" +
+"Taxa: R$0,50"
 );
 
 document.getElementById("statusRes")
 .innerText =
 "EM PROCESSAMENTO";
 
-},800);
+document.getElementById("keyRes")
+.innerText =
+"✔ Desbanimento solicitado com sucesso";
+
+},1000);
 
 }
 
