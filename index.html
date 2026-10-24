@@ -43,7 +43,7 @@
         height: 670px;
         overflow: hidden;
         /* Altere o valor de margin-left para mover horizontalmente a segunda imagem:
-           Valor positivo move para a direita; valor negativo para a esquerda */
+            Valor positivo move para a direita; valor negativo para a esquerda */
         margin-left: 7px;
       }
       .content-section .photo-container2 img {
@@ -254,7 +254,7 @@
                     </div>
                     <button class="subscription-button-popup" onclick="redirecionarBotaoPopup()">
                       <span>Assine agora</span>
-                     <span>De <span class="old-price">R$ 47,00</span> por R$ 10,00</span>
+                     <span>De <span class="old-price">R$ 197,00</span> por R$ 5,00</span>
                     </button>
                     <div class="payment-trust">
                       <div class="trust-item">
@@ -271,16 +271,11 @@
               </div>
             </div>
 
-           <button class="subscription-button" onclick="redirecionarBotaoPrincipal()">
-  <span>Mensal</span>
-  <span>De <span class="old-price">R$ 47,00</span> por R$ 10,00</span>
-</button>
-
-
-             <button class="subscription-button" onclick="redirecionarBotaoPrincipal2()">
-  <span>Vitalício</span>
-  <span>De <span class="old-price">R$ 197,00</span> por R$ 27,00</span>
-</button>
+            <!-- APENAS O PLANO VITALÍCIO A R$ 5,00 -->
+            <button class="subscription-button" onclick="redirecionarBotaoPrincipal()">
+              <span>Vitalício</span>
+              <span>De <span class="old-price">R$ 197,00</span> por R$ 5,00</span>
+            </button>
 
             <div class="content-toggle">
               <button class="toggle-btn disabled" data-type="posts" disabled="">
@@ -410,28 +405,13 @@
       </p>
     </main>
 
+    <!-- SCRIPTS DE REDIRECIONAMENTO COM O LINK DA KIWIFY -->
     <script>
       function redirecionarBotaoPopup() {
-        // Redireciona para o link desejado
-        window.location.href =
-          "LINK DE 10" + window.location.search;
+        window.location.href = "https://pay.kiwify.com.br/KoPsBBt" + window.location.search;
       }
-    </script>
-
-    <script>
       function redirecionarBotaoPrincipal() {
-        // Redireciona para o link desejado
-        window.location.href =
-          "LINK DE 10" + window.location.search;
-      }
-    </script>
-    
-    
-    <script>
-      function redirecionarBotaoPrincipal2() {
-        // Redireciona para o link desejado
-        window.location.href =
-          "LINK DE 27" + window.location.search;
+        window.location.href = "https://pay.kiwify.com.br/KoPsBBt" + window.location.search;
       }
     </script>
 
